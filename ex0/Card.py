@@ -1,0 +1,20 @@
+from abc import ABC, abstractmethod
+
+
+class Card(ABC):
+    def __init__(self, name: str, cost: int, rarity: str):
+        self._name = name
+        self._cost = cost
+        self._rarity = rarity
+
+    @abstractmethod
+    def play(sekf, game_state: dict) -> dict:
+        pass
+
+    def get_card_info(self) -> dict:
+        return {"name": self._name, "cost": self._cost, "rarity": self._rarity}
+
+    def is_playable(self, available_mana: int) -> bool:
+        if self._cost < available_mana:
+            return False
+        return True
